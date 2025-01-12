@@ -6,6 +6,7 @@ interface ButtonProps {
     variant: variantOptions;
     text: string;
     startIcon?: ReactElement;
+    onClick?: () => void;
 };
 
 const variantStyles = {
@@ -16,10 +17,12 @@ const variantStyles = {
 const defaultStyles = "px-4 py-2 rounded-md font-light flex items-center"
 
 export function Button(props: ButtonProps) {
-    return <button className={`${variantStyles[props.variant]} ${defaultStyles}`}>
-        <div className="pr-2">
-            {props.startIcon}
-        </div>
+    return <button onClick={props.onClick} className={`${variantStyles[props.variant]} ${defaultStyles}`}>
+        {props.startIcon && (
+            <div className="pr-2">
+                {props.startIcon}
+            </div>
+        )}
         {props.text}
     </button>
 };
